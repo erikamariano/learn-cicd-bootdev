@@ -5,7 +5,7 @@ on: #the 'on' key specifies when the workflow should run
     branches: [main]
 
 jobs: # a workflow is made of one or more jobs. A job is a set of steps that run of the same runner (a VM that runs the job on GitHub's servers)
-  tests:
+  tests: # this is a "job ID" chosen by the author. It could be any word.
     name: Tests #it could be any name. The goal is to assign a human-readable name
     runs-on: ubuntu-latest #the 'runs-on' key specifies the type of runner that should be used
 
@@ -26,8 +26,7 @@ jobs: # a workflow is made of one or more jobs. A job is a set of steps that run
       - name: Run tests
         run: go test ./... -cover
 
-jobs:
-  style:
+  style: # this is a "job ID" chosen by the author. It could be any word.
     name: Style
     runs-on: ubuntu-latest
 
