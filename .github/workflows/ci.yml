@@ -24,4 +24,4 @@ jobs: # a workflow is made of one or more jobs. A job is a set of steps that run
       # while the 'uses' key refers to an external pre-defined GitHub action, the 'run' key refers to a custom command.
 
       - name: Run tests
-        run: go test ./...
+        run: go test ./... -cover
