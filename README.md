@@ -1,5 +1,7 @@
 ![This repo has a defined CI, and the workflow has passed. Here is the proof](https://github.com/erikamariano/learn-cicd-bootdev/actions/workflows/ci.yml/badge.svg)
 
+![This repo has a defined CD, and the workflow has passed. Here is the proof](https://github.com/erikamariano/learn-cicd-bootdev/actions/workflows/cd.yml/badge.svg)
+
 # cicd (Notely)
 
 This repo contains the starter code for the "Notely" application for the CICD course on [Boot.dev](https://boot.dev).
