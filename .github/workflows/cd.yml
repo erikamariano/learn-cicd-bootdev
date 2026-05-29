@@ -1,0 +1,23 @@
+name: 
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.3"
+
+      - name: Build app
+        run: ./scripts/buildprod.sh
+        #compile this Go application into a Linux 64-bit executable named notely. It creates a portable Linux binary that can be deployed to servers, containers, or cloud environments.
