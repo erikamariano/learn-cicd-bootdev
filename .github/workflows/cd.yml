@@ -21,3 +21,6 @@ jobs:
       - name: Build app
         run: ./scripts/buildprod.sh
         #compile this Go application into a Linux 64-bit executable named notely. It creates a portable Linux binary that can be deployed to servers, containers, or cloud environments.
+
+      - name: Build Docker image
+        run: docker build -t notely .
