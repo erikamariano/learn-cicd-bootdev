@@ -5,7 +5,7 @@ on: #the 'on' key specifies when the workflow should run
     branches: [main]
 
 jobs: # a workflow is made of one or more jobs. A job is a set of steps that run of the same runner (a VM that runs the job on GitHub's servers)
-  tests:
+  tests: # this is a "job ID" chosen by the author. It could be any word.
     name: Tests #it could be any name. The goal is to assign a human-readable name
     runs-on: ubuntu-latest #the 'runs-on' key specifies the type of runner that should be used
 
@@ -25,3 +25,36 @@ jobs: # a workflow is made of one or more jobs. A job is a set of steps that run
 
       - name: Run tests
         run: go test ./... -cover
+
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+      - name: Run gosec
+        run: gosec ./...
+
+  style: # this is a "job ID" chosen by the author. It could be any word.
+    name: Style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4 #this is a pre-built checkout of GitHub to clone the repository into the runner
+
+      - name: Set up Go
+        uses: actions/setup-go@v5 #this sets up Go using a pre-built setup-go action (it configures a Go environment for use in workflows)
+        with:
+          go-version: "1.26.3"
+      
+      - name: Check formatting
+        run: test -z $(go fmt ./...)
+        #the $() syntax is used for command substitution in bash. It runs the command inside the parentheses, and then replaces the $() in the command line with the output of that command.
+        #the test command is built into bash. The -z option checks if the following argument is an empty string, returning 0 if it is, and 1 if it isn't.
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+        #linting has to do with the analysis of code to detect functional issues. Linters provide warnings or errors for potentially problematic code.
+        #staticcheck is a go library, most popular linter for Go.
+        #first, we need to intall it on the runner (and also locally, if you want to run it on local machine).
+
+      - name: Check linting
+        run: staticcheck ./...
