@@ -26,6 +26,12 @@ jobs: # a workflow is made of one or more jobs. A job is a set of steps that run
       - name: Run tests
         run: go test ./... -cover
 
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+      - name: Run gosec
+        run: gosec ./...
+
   style: # this is a "job ID" chosen by the author. It could be any word.
     name: Style
     runs-on: ubuntu-latest
