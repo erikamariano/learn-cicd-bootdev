@@ -25,3 +25,20 @@ jobs: # a workflow is made of one or more jobs. A job is a set of steps that run
 
       - name: Run tests
         run: go test ./... -cover
+
+jobs:
+  style:
+    name: Style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4 #this is a pre-built checkout of GitHub to clone the repository into the runner
+
+      - name: Set up Go
+        uses: actions/setup-go@v5 #this sets up Go using a pre-built setup-go action (it configures a Go environment for use in workflows)
+        with:
+          go-version: "1.26.3"
+      
+      - name: Check formatting
+        run: test -z $(go fmt ./...) && echo $?
