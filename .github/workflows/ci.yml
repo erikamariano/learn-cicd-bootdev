@@ -43,3 +43,12 @@ jobs: # a workflow is made of one or more jobs. A job is a set of steps that run
         run: test -z $(go fmt ./...)
         #the $() syntax is used for command substitution in bash. It runs the command inside the parentheses, and then replaces the $() in the command line with the output of that command.
         #the test command is built into bash. The -z option checks if the following argument is an empty string, returning 0 if it is, and 1 if it isn't.
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+        #linting has to do with the analysis of code to detect functional issues. Linters provide warnings or errors for potentially problematic code.
+        #staticcheck is a go library, most popular linter for Go.
+        #first, we need to intall it on the runner (and also locally, if you want to run it on local machine).
+
+      - name: Check linting
+        run: staticcheck ./...
