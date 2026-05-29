@@ -18,7 +18,10 @@ jobs: # a workflow is made of one or more jobs. A job is a set of steps that run
         with:
           go-version: "1.26.3"
 
-      - name: Check Go version
-        run: go version #the 'run' key is used to run arbitrary command-line commands in the runner.
+      #- name: Check Go version
+      #  run: go version #the 'run' key is used to run arbitrary command-line commands in the runner.
 
-# while the 'uses' key refers to an external pre-defined GitHub action, the 'run' key refers to a custom command.
+      # while the 'uses' key refers to an external pre-defined GitHub action, the 'run' key refers to a custom command.
+
+      - name: Run tests
+        run: go test ./...
