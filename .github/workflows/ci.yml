@@ -40,4 +40,6 @@ jobs: # a workflow is made of one or more jobs. A job is a set of steps that run
           go-version: "1.26.3"
       
       - name: Check formatting
-        run: test -z $(go fmt ./...) && echo $?
+        run: test -z $(go fmt ./...)
+        #the $() syntax is used for command substitution in bash. It runs the command inside the parentheses, and then replaces the $() in the command line with the output of that command.
+        #the test command is built into bash. The -z option checks if the following argument is an empty string, returning 0 if it is, and 1 if it isn't.
