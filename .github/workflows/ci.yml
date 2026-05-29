@@ -1,0 +1,27 @@
+name: ci #it could be any name. The goal is to assign a human-readable name
+
+on: #the 'on' key specifies when the workflow should run
+  pull_request: #in this case, the workflow should run when a PR is open to the main branch
+    branches: [main]
+
+jobs: # a workflow is made of one or more jobs. A job is a set of steps that run of the same runner (a VM that runs the job on GitHub's servers)
+  tests:
+    name: Tests #it could be any name. The goal is to assign a human-readable name
+    runs-on: ubuntu-latest #the 'runs-on' key specifies the type of runner that should be used
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4 #this is a pre-built checkout of GitHub to clone the repository into the runner
+
+      - name: Set up Go
+        uses: actions/setup-go@v5 #this sets up Go using a pre-built setup-go action (it configures a Go environment for use in workflows)
+        with:
+          go-version: "1.26.3"
+
+      #- name: Check Go version
+      #  run: go version #the 'run' key is used to run arbitrary command-line commands in the runner.
+
+      # while the 'uses' key refers to an external pre-defined GitHub action, the 'run' key refers to a custom command.
+
+      - name: Run tests
+        run: go test ./... -cover
