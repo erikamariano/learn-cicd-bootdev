@@ -1,8 +1,8 @@
 ![This repo has a defined CI, and the workflow has passed. Here is the proof](https://github.com/erikamariano/learn-cicd-bootdev/actions/workflows/ci.yml/badge.svg)
 
-# learn-cicd-starter (Notely)
+# cicd (Notely)
 
-This repo contains the starter code for the "Notely" application for the "Learn CICD" course on [Boot.dev](https://boot.dev).
+This repo contains the starter code for the "Notely" application for the CICD course on [Boot.dev](https://boot.dev).
 
 ## Local Development
 
